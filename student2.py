@@ -79,3 +79,28 @@ def add_data(student:Student):
     }
     data.append(newData)
     return newData
+
+
+@app.put("/updateStudent/{student_id}")
+def update_student(student_id : int, student : Student):
+    for s in data :
+        if s["id"] == student_id:
+            s.update(student.model_dump())
+            return s
+    return{
+        "message" : "Student not found"
+    }
+
+
+@app.delete("/deleteStudent/{student_id}")
+def delete_student(student_id : int):
+    for index,s in enumerate(data):
+        if s["id"] == student_id:
+            deleted_student = data.pop(index)
+            return{
+                "message" : "Student deleted successfully",
+                "deleted_student" : deleted_student
+            }
+    return{
+        "message" : "Student not found"
+    }
