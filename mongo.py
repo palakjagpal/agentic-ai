@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 from bson import ObjectId
 import os
+from google import genai
 import certifi
 
 app=FastAPI()

@@ -1,0 +1,19 @@
+from fastapi import FastAPI, Query
+import os
+from dotenv import load_dotenv
+from google import genai
+
+load_dotenv()
+
+app=FastAPI()
+
+client = genai.Client(
+    api_key=os.getenv("GEMINI_API_KEY")
+)
+response=client.models.generate_content(
+    model="gemini-3.5-flash-lite",
+    contents="Explain the concept of photosynthesis."
+)
+
+print(response.text)
+
