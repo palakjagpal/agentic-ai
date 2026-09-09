@@ -30,3 +30,4 @@ def ask(question : str = Query(...,description="Enter your question here")):
         "question":question,
         "answer":response.text
     }
+
