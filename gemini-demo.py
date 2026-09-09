@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI
 import os
 from dotenv import load_dotenv
 from google import genai
