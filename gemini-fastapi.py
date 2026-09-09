@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,Query
 from google import genai
 import os
 from dotenv import load_dotenv
@@ -18,4 +18,15 @@ MODEL="gemini-3.5-flash-lite"
 def gethome():
     return{
         "message":"Welcome to Gemini FastAPI"
+    }
+
+@app.get("/ask")
+def ask(question : str = Query(...,description="Enter your question here")):
+    response=client.models.generate_content(
+        model=MODEL,
+        contents=question
+    )
+    return{
+        "question":question,
+        "answer":response.text
     }
